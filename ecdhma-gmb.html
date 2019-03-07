@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300i,400" rel="stylesheet">
+    <title>HMA QC Charts</title>
+    <link rel="stylesheet" href="plot-style.css">
+    <script src="plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <!-- // ................................D4 Gmb DATA...............................
+    // ...................................................................................... -->
+    <div id="ecd-d4-gmb-chart">
+        <script>
+            // ................................CHART DATA............................................
+            // ......................................................................................
+
+            // HMA Gmb
+            var bulkSpecificGravity = {
+                // D4-Gmb Data (Updated 28.02.2019)
+                x: ['2018-11-08', '2018-11-08', '2018-11-09', '2018-11-09', '2018-11-11', '2018-11-13', '2018-11-15', '2018-11-21', '2018-11-23', '2018-11-23', '2018-12-02', '2018-12-02', '2018-12-04', '2018-12-05', '2018-12-05', '2018-12-09', '2018-12-17', '2018-12-20', '2018-12-21', '2019-01-06', '2019-01-07', '2019-01-14', '2019-01-15', '2019-01-16', '2019-02-06', '2019-02-06', '2019-02-07', '2019-02-09', '2019-02-19', '2019-02-23'],
+                y: [2.659, 2.669, 2.643, 2.661, 2.704, 2.665, 2.653, 2.673, 2.696, 2.702, 2.704, 2.706, 2.667, 2.677, 2.685, 2.689, 2.709, 2.646, 2.647, 2.673, 2.658, 2.645, 2.657, 2.681, 2.650, 2.658, 2.668, 2.661, 2.642, 2.660,],
+                mode: 'lines+markers',
+                name: 'ECD - HMA-Gmb',
+                connectgaps: true,
+
+                marker: {
+                    color: 'rgba(239, 87, 119,0.75)',
+                    size: 10,
+
+                },
+                line: {
+                    color: 'green',
+                    width: 2,
+                    shape: 'linear'
+                }
+            };
+
+            // .....................................PLOT............................................
+            var data = [bulkSpecificGravity];
+            var layout = {
+                title: {
+                    text: 'HMA Binder Course - Bulk Specific Gravity Chart <br>Design G<sub>mb</sub> = 2.670',
+                    font: {
+                        size: 20,
+                        color: 'white',
+                        family: 'Lato'
+                    }
+                },
+                width: 1300,
+                height: 580,
+                paper_bgcolor: 'rgba(207, 109, 23,0.75)',
+                plot_bgcolor: '#fbf9fd',
+                xaxis: {
+                    title: '<b>Date</b>',
+                    color: 'white',
+                    showgrid: true,
+                    zeroline: true,
+                    showline: true,
+                    type: 'date',
+                    autorange: true,
+                    gridcolor: '#e8dff5',
+                    range: ['2018-11-01', '2019-12-31'],
+                    rangeselector: {
+                        buttons: [
+                            {
+                                count: 1,
+                                label: '1m',
+                                step: 'month',
+                                stepmode: 'backward'
+                            },
+                            {
+                                count: 6,
+                                label: '6m',
+                                step: 'month',
+                                stepmode: 'backward'
+                            },
+                            { step: 'all' }
+                        ]
+                    },
+                    rangeslider: { range: ['2019-01-01', '2019-12-31'] },
+                },
+                yaxis: {
+                    title: 'G<sub>mb</sub>',
+                    range: [2.000, 3.000],
+                    showgrid: true,
+                    showline: true,
+                    color: 'white',
+                    gridcolor: '#e8dff5',
+
+
+                },
+
+                legend: {
+                    y: 0.05,
+                    x: 0.739,
+                    traceorder: 'reversed',
+                    font: {
+                        size: 12
+                    }
+                },
+                shapes: [
+                    // Acceptance Range Highlighting
+                    // {
+                    //     type: 'rect',
+                    //     // x-reference is assigned to the x-values
+                    //     xref: 'x',
+                    //     // y-reference is assigned to the plot paper [0,1]
+                    //     yref: 'y',
+                    //     x0: '2018-11-01',
+                    //     y0: 4.1,
+                    //     x1: '2019-12-31',
+                    //     y1: 5.1,
+                    //     fillcolor: 'rgba(46, 204, 113,0.25)',
+                    //     opacity: 0.2,
+                    //     line: {
+                    //         width: 1
+                    //     }
+                    // },
+                    //JMF Bulk Specific Gravity Reference Line
+                    {
+                        type: 'line',
+                        xref: 'x',
+                        yref: 'y',
+                        x0: '2018-11-01',
+                        y0: 2.665,
+                        x1: '2019-12-31',
+                        y1: 2.665,
+                        line: {
+                            color: 'rgba(255, 107, 107,1.0)',
+                            width: 1,
+                            dash: 'dot'
+                        }
+                    }
+                ],
+
+            };
+            Plotly.newPlot('ecd-d4-gmb-chart', data, layout);
+        </script>
+    </div>
+    <br>
+    <a href="index.html"
+        style="padding:5px; color:chocolate; text-decoration: none; border-bottom-style: solid; border-right-style: solid;">Go
+        Back</a></div>
+    <br>
+    <br>
+    <!-- // ................................D5 Gmb DATA...............................
+    // ...................................................................................... -->
+    <div id="ecd-d5-gmb-chart">
+        <script>
+
+            // HMA Gmb
+            var bulkSpecificGravity = {
+                // D5-Gmb Data (Updated 28.02.2019)
+                x: ['2018-11-17', '2018-11-17', '2018-11-18', '2018-11-18', '2018-11-19', '2018-11-26', '2018-11-26', '2018-11-30', '2018-11-30', '2018-12-01', '2018-12-02', '2018-12-07', '2018-12-10', '2018-12-10', '2018-12-12', '2018-12-22', '2018-12-23', '2018-12-28', '2019-01-05', '2019-01-07', '2019-01-15', '2019-01-16', '2019-01-19', '2019-02-08', '2019-02-14', '2019-02-20', '2019-02-24'],
+                y: [2.693, 2.677, 2.660, 2.638, 2.613, 2.613, 2.670, 2.653, 2.632, 2.665, 2.644, 2.642, 2.681, 2.661, 2.635, 2.639, 2.663, 2.666, 2.633, 2.613, 2.662, 2.634, 2.631, 2.652, 2.655, 2.640, 2.622],
+                mode: 'lines+markers',
+                name: 'ECD - HMA-D5 Gmb',
+                connectgaps: true,
+
+                marker: {
+                    color: 'rgba(239, 87, 119,0.75)',
+                    size: 10,
+
+                },
+                line: {
+                    color: 'green',
+                    width: 2,
+                    shape: 'linear'
+                }
+            };
+
+            // .....................................PLOT............................................
+            var data = [bulkSpecificGravity];
+            var layout = {
+                title: {
+                    text: 'HMA Surface Course - Bulk Specific Gravity Chart <br>Design G<sub>mb</sub> = 2.634',
+                    font: {
+                        size: 20,
+                        color: 'white',
+                        family: 'Lato'
+                    }
+                },
+                width: 1300,
+                height: 580,
+                paper_bgcolor: 'rgba(207, 109, 23,0.75)',
+                plot_bgcolor: '#fbf9fd',
+                xaxis: {
+                    title: '<b>Date</b>',
+                    showgrid: true,
+                    color: 'white',
+                    zeroline: true,
+                    showline: true,
+                    type: 'date',
+                    autorange: true,
+                    gridcolor: '#e8dff5',
+                    range: ['2018-11-01', '2019-12-31'],
+                    rangeselector: {
+                        buttons: [
+                            {
+                                count: 1,
+                                label: '1m',
+                                step: 'month',
+                                stepmode: 'backward'
+                            },
+                            {
+                                count: 6,
+                                label: '6m',
+                                step: 'month',
+                                stepmode: 'backward'
+                            },
+                            { step: 'all' }
+                        ]
+                    },
+                    rangeslider: { range: ['2018-11-01', '2019-12-31'] },
+                },
+                yaxis: {
+                    title: 'G<sub>mb</sub>',
+                    range: [2.00, 3.00],
+                    showgrid: true,
+                    color: 'white',
+                    showline: true,
+                    gridcolor: '#e8dff5',
+
+
+                },
+
+                legend: {
+                    y: 0.05,
+                    x: 0.739,
+                    traceorder: 'reversed',
+                    font: {
+                        size: 12
+                    }
+                },
+                shapes: [
+                    // Acceptance Range Highlighting
+                    // {
+                    //     type: 'rect',
+                    //     // x-reference is assigned to the x-values
+                    //     xref: 'x',
+                    //     // y-reference is assigned to the plot paper [0,1]
+                    //     yref: 'y',
+                    //     x0: '2018-11-01',
+                    //     y0: 4.4,
+                    //     x1: '2019-12-31',
+                    //     y1: 5.4,
+                    //     fillcolor: 'rgba(46, 204, 113,0.25)',
+                    //     opacity: 0.2,
+                    //     line: {
+                    //         width: 1
+                    //     }
+                    // },
+                    //JMF Gmb Reference Line
+                    {
+                        type: 'line',
+                        xref: 'x',
+                        yref: 'y',
+                        x0: '2018-11-01',
+                        y0: 2.655,
+                        x1: '2019-12-31',
+                        y1: 2.655,
+                        line: {
+                            color: 'rgba(255, 107, 107,1.0)',
+                            width: 1,
+                            dash: 'dot'
+                        }
+                    }
+                ],
+
+            };
+
+
+            Plotly.newPlot('ecd-d5-gmb-chart', data, layout);
+        </script>
+    </div>
+    <br>
+    <a href="index.html"
+        style="padding:5px; color:chocolate; text-decoration: none; border-bottom-style: solid; border-right-style: solid;">Go
+        Back</a></div>
+    <br>
+    <br>
+</body>
+
+</html>
