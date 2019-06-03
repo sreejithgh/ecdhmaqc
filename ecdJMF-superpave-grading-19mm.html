@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Superpave Grading Control Chart</title>
+    <!-- <link rel="stylesheet" href="plot-style.css"> -->
+    <script src="plotly-latest.min.js"></script>
+</head>
+
+<body>
+    <div id="superpave-grading-chart">
+        <script>
+            // ................................SUPERPAVE GRADING CHART DATA............................................
+            // ......................................................................................
+            // Superpave Maximum Density Line (37.5 mm nominal size)
+            // var mdl37_5mm = {
+            //     // sieveSize: [50.0, 0],
+            //     x: [50.0 ** 0.45, 0 ** 0.45],
+            //     y: [100, 0],
+            //     mode: 'lines',
+            //     name: 'Max. Density Line (50.0 mm)',
+            //     connectgaps: true,
+            //     line: {
+            //         color: 'red',
+            //         width: 1.0,
+            //         shape: 'linear',
+            //         dash: 'dot'
+            //     }
+            // };
+            // // Superpave Maximum Density Line (25.0 mm nominal size)
+            // var mdl25mm = {
+            //     // sieveSize: [37.5, 0],
+            //     x: [37.5 ** 0.45, 0 ** 0.45],
+            //     y: [100, 0],
+            //     mode: 'lines',
+            //     name: 'Max. Density Line (25 mm)',
+            //     connectgaps: true,
+            //     line: {
+            //         color: 'orange',
+            //         width: 1.0,
+            //         shape: 'linear',
+            //         dash: 'dot'
+            //     }
+            // };
+            // Superpave Maximum Density Line (19.0 mm nominal size)
+            var mdl19mm = {
+                // sieveSize: [25.0, 0],
+                x: [25.0 ** 0.45, 0 ** 0.45],
+                y: [100, 0],
+                mode: 'lines',
+                name: 'Max. Density Line (19.0 mm)',
+                connectgaps: true,
+                line: {
+                    color: 'orange',
+                    width: 2,
+                    shape: 'linear',
+                    dash: 'dot'
+                }
+            };
+            // Superpave Maximum Density Line (12.5 mm nominal size)
+            var mdl12_5mm = {
+                // sieveSize: [19.0, 0],
+                x: [19.0 ** 0.45, 0 ** 0.45],
+                y: [100, 0],
+                mode: 'lines',
+                name: 'Max. Density Line (12.5 mm)',
+                connectgaps: true,
+                line: {
+                    color: 'pink',
+                    width: 2,
+                    shape: 'linear',
+                    dash: 'dot'
+                }
+            };
+            // // Superpave Maximum Density Line (9.5 mm nominal size)
+            // var mdl9_5mm = {
+            //     // sieveSize: [9.5, 0],
+            //     x: [9.5 ** 0.45, 0 ** 0.45],
+            //     y: [100, 0],
+            //     mode: 'lines',
+            //     name: 'Max. Density Line (9.5 mm)',
+            //     connectgaps: true,
+            //     line: {
+            //         color: 'red',
+            //         width: 1.5,
+            //         shape: 'linear',
+            //         dash: 'dot'
+            //     }
+            // };
+            // // Superpave Maximum Density Line (4.75 mm nominal size)
+            // var mdl4_75mm = {
+            //     // sieveSize: [4.75, 0],
+            //     x: [4.75 ** 0.45, 0 ** 0.45],
+            //     y: [100, 0],
+            //     mode: 'lines',
+            //     name: 'Max. Density Line (4.75 mm)',
+            //     connectgaps: true,
+            //     line: {
+            //         color: 'red',
+            //         width: 1.5,
+            //         shape: 'linear',
+            //         dash: 'dot'
+            //     }
+            // };
+            // Superpave Grading Control Points (37.5 mm nominal size)
+            // var superpaveGCP37_5mmCP = {
+            //     // sieveSize: [50.0, 37.5, 25.0, 19.0, 12.5, 9.5, 4.75, 2.36, 1.18, 0.075],
+            //     x: [50.0 ** 0.45, 50.0 ** 0.45, 37.5 ** 0.45, 37.5 ** 0.45, 25.0 ** 0.45, 25.0 ** 0.45, 2.36 ** 0.45, 2.36 ** 0.45, 0.075 ** 0.45, 0.075 ** 0.45],
+            //     y: [NaN, 100, 100, 90, 90, NaN, 41, 15, 6, 0],
+            //     mode: 'markers',
+            //     name: 'Control Points 37.5 mm',
+            //     connectgaps: true,
+            //     marker: {
+            //         color: 'rgba(239, 87, 119,1.0)',
+            //         size: 9
+            //     },
+
+            // };
+            // // Superpave Grading Control Points (25.0 mm nominal size)
+            // var superpaveGCP25mmCP = {
+            //     // sieveSize: [50.0, 37.5, 25.0, 19.0, 12.5, 9.5, 4.75, 2.36, 1.18, 0.075],
+            //     x: [37.5 ** 0.45, 37.5 ** 0.45, 25.0 ** 0.45, 25.0 ** 0.45, 19.0 ** 0.45, 19.0 ** 0.45, 2.36 ** 0.45, 2.36 ** 0.45, 0.075 ** 0.45, 0.075 ** 0.45],
+            //     y: [NaN, 100, 100, 90, 90, NaN, 45, 19, 7, 1],
+            //     mode: 'markers',
+            //     name: 'Control Points 25.0 mm',
+            //     connectgaps: true,
+            //     marker: {
+            //         color: 'rgba(239, 87, 119,1.0)',
+            //         size: 9
+            //     },
+
+            // };
+            // Superpave Grading Control Points (19.0 mm nominal size)
+            var superpaveGCP19mmCP = {
+                // sieveSize: [50.0, 37.5, 25.0, 19.0, 12.5, 9.5, 4.75, 2.36, 1.18, 0.075],
+                x: [25.0 ** 0.45, 25.0 ** 0.45, 19.0 ** 0.45, 19.0 ** 0.45, 12.5 ** 0.45, 12.5 ** 0.45, 2.36 ** 0.45, 2.36 ** 0.45, 0.075 ** 0.45, 0.075 ** 0.45],
+                y: [NaN, 100, 100, 90, 90, NaN, 49, 23, 8, 2],
+                mode: 'markers',
+                name: 'Superpave (AASHTO M 323) Control Points, 19.0 mm',
+                connectgaps: true,
+                marker: {
+                    color: 'rgba(120, 30, 125,1.0)',
+                    size: 10
+                },
+
+            };
+            // Superpave Grading Control Points (12.5 mm nominal size)
+            var superpaveGCP12_5mmCP = {
+                // sieveSize: [50.0, 37.5, 25.0, 19.0, 12.5, 9.5, 4.75, 2.36, 1.18, 0.075],
+                x: [19.0 ** 0.45, 19.0 ** 0.45, 12.5 ** 0.45, 12.5 ** 0.45, 9.5 ** 0.45, 9.5 ** 0.45, 2.36 ** 0.45, 2.36 ** 0.45, 0.075 ** 0.45, 0.075 ** 0.45],
+                y: [NaN, 100, 100, 90, 90, NaN, 58, 28, 10, 2],
+                mode: 'markers',
+                name: 'Superpave (AASHTO M 323) Control Points, 12.5 mm',
+                connectgaps: true,
+                marker: {
+                    color: 'rgba(239, 100, 2,1.0)',
+                    size: 10
+                },
+
+            };
+            // // Superpave Grading Control Points (9.5 mm nominal size)
+            // var superpaveGCP9_5mmCP = {
+            //     // sieveSize: [50.0, 37.5, 25.0, 19.0, 12.5, 9.5, 4.75, 2.36, 1.18, 0.075],
+            //     x: [12.5 ** 0.45, 12.5 ** 0.45, 9.5 ** 0.45, 9.5 ** 0.45, 4.75 ** 0.45, 4.75 ** 0.45, 2.36 ** 0.45, 2.36 ** 0.45, 0.075 ** 0.45, 0.075 ** 0.45],
+            //     y: [NaN, 100, 100, 90, 90, NaN, 67, 32, 10, 2],
+            //     mode: 'markers',
+            //     name: 'Control Points 9.5 mm',
+            //     connectgaps: true,
+            //     marker: {
+            //         color: 'rgba(239, 87, 119,1.0)',
+            //         size: 9
+            //     },
+
+            // };
+            // // Superpave Grading Control Points (4.75 mm nominal size)
+            // var superpaveGCP4_75mmCP = {
+            //     // sieveSize: [50.0, 37.5, 25.0, 19.0, 12.5, 9.5, 4.75, 2.36, 1.18, 0.075],
+            //     x: [12.5 ** 0.45, 12.5 ** 0.45, 9.5 ** 0.45, 9.5 ** 0.45, 4.75 ** 0.45, 4.75 ** 0.45, 1.18 ** 0.45, 1.18 ** 0.45, 0.075 ** 0.45, 0.075 ** 0.45],
+            //     y: [NaN, 100, 100, 95, 100, 90, 55, 30, 13, 6],
+            //     mode: 'markers',
+            //     name: 'Control Points 4.75 mm',
+            //     connectgaps: true,
+            //     marker: {
+            //         color: 'rgba(239, 87, 119,1.0)',
+            //         size: 9
+            //     },
+
+            // };
+            // ECD D4 Grading
+            var ecdD4Grading = {
+                // sieveSize: [50.0, 37.5, 25.0, 19.0, 12.5, 9.5, 4.75, 2.36, 1.18, 0.075],
+                x: [25.0 ** 0.45, 19.0 ** 0.45, 9.5 ** 0.45, 4.75 ** 0.45, 2.36 ** 0.45, 0.3 ** 0.45, 0.075 ** 0.45],
+                y: [100, 99.9, 75.43, 50.12, 36.71, 13.76, 4.60],
+                mode: 'lines+markers',
+                name: 'ECD D4 JMF Grading',
+                connectgaps: true,
+                marker: {
+                    color: 'red',
+                    size: 2
+                },
+                line: {
+                    color: 'rgba(100, 200, 100,1.0)',
+                    width: 1.5,
+                    shape: 'linear'
+                }
+            };
+            // ECD D5 Grading
+            var ecdD5Grading = {
+                // sieveSize: [50.0, 37.5, 25.0, 19.0, 12.5, 9.5, 4.75, 2.36, 1.18, 0.075],
+                x: [25.0 ** 0.45, 19.0 ** 0.45, 12.5 ** 0.45, 4.75 ** 0.45, 2.36 ** 0.45, 0.3 ** 0.45, 0.075 ** 0.45],
+                y: [100, 100, 99.7, 64.6, 41.1, 13.9, 4.7],
+                mode: 'lines+markers',
+                name: 'ECD D5 JMF Grading',
+                connectgaps: true,
+                marker: {
+                    color: 'red',
+                    size: 2
+                },
+                line: {
+                    color: 'rgba(20, 150, 150,1.0)',
+                    width: 1.5,
+                    shape: 'linear'
+                }
+            };
+
+            // .....................................PLOT............................................
+            var data = [superpaveGCP19mmCP, ecdD4Grading, mdl19mm];
+            var layout = {
+                title: {
+                    text: '<b>HMA Binder Course (D4): JMF Grading Vs Superpave Grading, 19.0 mm nom. size</b><br>East Coast Demerara Road Rehabilitation Project',
+                    font: {
+                        size: 20,
+                        color: '#2b0329'
+                    }
+                },
+                width: 1300,
+                height: 600,
+                paper_bgcolor: 'rgba(234, 181, 67,0.3)',
+                plot_bgcolor: '#fbf9fd',
+                xaxis: {
+                    title: '<b>Sieve Size, mm (0.45 Power)</b>',
+                    showgrid: true,
+                    zeroline: true,
+                    showline: true,
+                    type: 'linear',
+                    range: [0, 5.0],
+                    gridcolor: '#e8dff5',
+                    tickmode: 'array',
+                    tickvals: [50.0 ** 0.45, 37.5 ** 0.45, 25.0 ** 0.45, 19.0 ** 0.45, 12.5 ** 0.45, 9.5 ** 0.45, 4.75 ** 0.45, 2.36 ** 0.45, 1.18 ** 0.45, 0.075 ** 0.45],
+                    ticktext: [50.0, 37.5, 25.0, 19.0, 12.5, 9.5, 4.75, 2.36, 1.18, 0.075],
+                    tickangle: -90,
+                    tickfont: {
+                        size: 12,
+                        color: '#2b0329'
+                    }
+
+                },
+                yaxis: {
+                    title: '<b>Percent Passing, %</b>',
+                    range: [0, 105],
+                    showgrid: true,
+                    showline: true,
+                    gridcolor: '#e8dff5',
+
+
+                },
+                legend: {
+                    y: 0.97,
+                    x: 0.01,
+                    traceorder: 'reversed',
+                    font: {
+                        size: 11
+                    }
+                }
+            };
+
+            Plotly.newPlot('superpave-grading-chart', data, layout);
+        </script>
+    </div>
+    <br>
+    <a href="index.html"
+        style="padding:5px; color:chocolate; text-decoration: none; border-bottom-style: solid; border-right-style: solid;">Go
+        Back</a>
+</body>
+
+</html>
